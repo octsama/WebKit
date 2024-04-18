@@ -9643,7 +9643,7 @@ void WebPageProxy::dispatchProcessDidTerminate(ProcessTerminationReason reason)
     else
         handledByClient = m_navigationClient->processDidTerminate(*this, reason);
 
-    if (!handledByClient && shouldReloadAfterProcessTermination(reason)) {
+    if (!handledByClient || shouldReloadAfterProcessTermination(reason)) {
         // We delay the view reload until it becomes visible.
         if (isViewVisible())
             tryReloadAfterProcessTermination();
